@@ -1,0 +1,8 @@
+run wallet lthn to create the skeliton, then edit the .env file adding
+
+EXCHANGE_ADDRESS=
+WALLET_FILE=NAME_OF_WALLET_IN_DATA_FOLDER
+WALLET_RPC_BIN=aeon-wallet-rpc
+WALLET_CLI_BIN=aeon-wallet-cli
+DAEMON_HOST=nodes.hashvault.pro
+WALLET_CLI_ARGS=--trusted-daemon
