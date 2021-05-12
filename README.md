@@ -1,4 +1,4 @@
-### WARNING: Alpha Ware, Dont use unless you're a sadist.
+# Docker start system, that's also sudo code for the Rust Client
 
 You can use this direct, or via docker. If that confused you, you want docker.
 
