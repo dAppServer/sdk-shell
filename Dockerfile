@@ -7,4 +7,4 @@ COPY . .
 
 RUN chmod +x start.sh
 
-ENTRYPOINT /wallet/start.sh balance lthn
+ENTRYPOINT /wallet/lthn.sh sync-chain

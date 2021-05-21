@@ -1,4 +1,4 @@
 data/*
-config/*.env
+#config/*.env
 logs/*
 .idea
