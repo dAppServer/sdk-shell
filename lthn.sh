@@ -110,7 +110,7 @@ exportChain() {
     errorExit 3 "You must allocate TTY to run ${CHAIN_EXPORT}! Use -t option"
   fi
   echo "Exporting Blockchain"
-  $CHAIN_EXPORT --data-dir=./data/livenet --output-file ./bc/data.lmdb "$@"
+  $CHAIN_EXPORT --data-dir=./data/livenet --output-file ./bc/data.lmdb
 }
 
 importChain() {
@@ -119,7 +119,7 @@ importChain() {
     errorExit 3 "You must allocate TTY to run ${CHAIN_IMPORT}! Use -t option"
   fi
   echo "Blockchain Importing"
-  $CHAIN_IMPORT --data-dir=./data/livenet --db-salvage --input-file ./bc/data.lmdb "$@"
+  $CHAIN_IMPORT --data-dir=./data/livenet --db-salvage --input-file ./bc/data.lmdb
 }
 
 runWalletVPNRpc() {
@@ -198,6 +198,11 @@ sync|letheand)
   runLiveNetDaemon "$@"
   ;;
 
+daemon)
+  shift
+  runLiveNetDaemon --detach
+  ;;
+
 export)
   shift
   exportChain "$@"
@@ -238,23 +243,9 @@ make-wallet)
   ;;
 
 
-balance)
+wallet-cmd)
   shift
-  runWalletCmd "balance"
-  ;;
-
-exchange)
-  shift
-  runWalletCmd "transfer $EXCHANGE_ADDRESS ${2}"
-  ;;
-
-create)
-  shift
-  if [ ! -f $CONFIG_DATA ]; then
-    echo "Starting a new coin, found no config in: $CONFIG_DATA"
-    initCoin "$@"
-  fi
-  runWalletCmd "refresh"
+  runWalletCmd "$@"
   ;;
 
 dev-fund)
@@ -272,7 +263,7 @@ repair)
 
 *)
   echo "Bad command. Use one of:"
-  echo "wallet [coin] [help|balance|transfer|sign|verify]|dev-fund|wallet-cli"
+  echo "make-wallet||wallet-cli"
 
   exit 2
   ;;

@@ -9,15 +9,68 @@ sudo chmod +x /usr/bin/lthn
 
 ```
 
-# Run LiveNet
-
-Linux:
+# Run letheand as a daemon
 ```shell
-./lthn.sh sync
+lthn daemon
 ```
 Docker:
 ```shell
 docker lthn/chain sync
+```
+
+# Run Interactive Letheand
+
+Linux:
+```shell
+lthn letheand 
+# Alias: lthn sync
+```
+Docker:
+```shell
+docker lthn/chain letheand
+```
+
+# Export Chain to /dc/ share
+
+Linux:
+```shell
+lthn export 
+```
+Docker:
+```shell
+docker lthn/chain export
+```
+
+# Import Chain from /dc/ share
+
+Linux:
+```shell
+lthn import 
+```
+Docker:
+```shell
+docker lthn/chain import
+```
+
+# Wallet RPC
+```shell
+lthn wallet-rpc
+```
+
+# Wallet VPN RPC
+```shell
+lthn vpn-rpc
+```
+
+# Run Command on Wallet CLI (Restful)
+```shell
+lthn wallet-cmd help
+```
+
+# Make a wallet
+Makes a wallet in `./data/wallet/wallet` with password `test`
+```shell
+lthn make-wallet
 ```
 
 # Environment Vars
