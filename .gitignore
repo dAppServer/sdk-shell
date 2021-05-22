@@ -2,3 +2,4 @@ data/*
 #config/*.env
 logs/*
 .idea
+bc/data.lmdb
