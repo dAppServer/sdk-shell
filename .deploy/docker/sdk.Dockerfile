@@ -1,6 +1,6 @@
 FROM alpine
 
-RUN apk add bash
+RUN apk add bash make
 WORKDIR /home/lthn
 
 COPY . .
