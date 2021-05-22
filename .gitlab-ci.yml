@@ -16,3 +16,4 @@ Docker Hub:
     name: docker.io
   only:
     - master
+    - develop
