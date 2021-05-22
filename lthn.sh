@@ -257,13 +257,9 @@ sh | bash)
   /bin/bash
   ;;
 
-repair)
-
-  ;;
-
 *)
-  echo "Bad command. Use one of:"
-  echo "make-wallet||wallet-cli"
+  echo "Bad command:$@ "
+  echo "sync|daemon|import|export|vpn-rpc|wallet-rpc|make-wallet|wallet-cmd|wallet-cli|bash"
 
   exit 2
   ;;

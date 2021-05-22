@@ -1,5 +1,8 @@
-log/
-data/
-bc/
+log
+data
+bc*
 *.md
-.idea/
+.idea
+.git
+.gitignore
+.deploy

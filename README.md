@@ -1,7 +1,31 @@
 # Note
 This is not added to the docker image yet, so for docker to work run `docker build -t lthn/chain .` 
 
-# Install
+# Build tools
+
+Will take the docker compose file and make K8 manifest
+```shell
+make k8
+```
+Deploy to the K8 cluster configured
+
+```shell
+make deploy
+```
+Builds the docker image
+```shell
+make docker
+```
+builds the docker image then runs it giving you a shell into the image you just built
+```shell
+make run-docker
+```
+pushes the image to the registry you have logged into
+```shell
+make deploy-docker
+```
+
+# Commands
 This is not meant to be used other than developers or power users.
 ```shell
 sudo ln -s $(pwd)/lthn.sh /usr/bin/lthn
@@ -27,7 +51,7 @@ lthn letheand
 ```
 Docker:
 ```shell
-docker lthn/chain letheand
+docker lthn/sdk-shell letheand
 ```
 
 # Export Chain to /dc/ share
@@ -38,7 +62,7 @@ lthn export
 ```
 Docker:
 ```shell
-docker lthn/chain export
+docker lthn/sdk-shell export
 ```
 
 # Import Chain from /dc/ share
@@ -49,12 +73,16 @@ lthn import
 ```
 Docker:
 ```shell
-docker lthn/chain import
+docker lthn/sdk-shell import
 ```
 
 # Wallet RPC
 ```shell
 lthn wallet-rpc
+```
+Docker:
+```shell
+docker lthn/sdk-shell wallet-rpc
 ```
 
 # Wallet VPN RPC
@@ -62,15 +90,27 @@ lthn wallet-rpc
 lthn vpn-rpc
 ```
 
+Docker:
+```shell
+docker lthn/sdk-shell vpn-rpc
+```
+
 # Run Command on Wallet CLI (Restful)
 ```shell
 lthn wallet-cmd help
 ```
-
+Docker:
+```shell
+docker lthn/sdk-shell wallet-cmd
+```
 # Make a wallet
 Makes a wallet in `./data/wallet/wallet` with password `test`
 ```shell
 lthn make-wallet
+```
+Docker:
+```shell
+docker lthn/sdk-shell make-wallet
 ```
 
 # Environment Vars
