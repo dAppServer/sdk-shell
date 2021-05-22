@@ -27,6 +27,10 @@ It needs sudo for this: `ln -s "$(pwd)"/lthn.sh /usr/bin/lthn && chmod +x /usr/b
 ```shell
 sudo make install
 ```
+Self update
+```shell
+make update-docker
+```
 
 # Commands
 This is not meant to be used other than developers or power users.
