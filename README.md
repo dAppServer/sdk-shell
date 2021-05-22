@@ -1,6 +1,5 @@
 # Note
-This is not added to the docker image yet, so for docker to work run `docker build -t lthn/chain .` 
-
+work in progress, docker image: `docker pull lthn/sdk-shell`
 # Build tools
 
 Will take the docker compose file and make K8 manifest
