@@ -22,6 +22,25 @@ deploy-docker: docker
 run-docker: docker
 	docker run -it "$(DOCKER_IMAGE)" bash
 
+# to eject, we have to get the image, run it, cp, stop it.
+.PHONY: update-docker
+update-docker: eject-docker-cp
+	echo "Stopping: " && docker stop "sdk-shell" && echo "Deleting:" && docker container rm "sdk-shell"
+
+# get docker image
+.PHONY: pull-docker
+pull-docker:
+	docker pull "$(DOCKER_IMAGE)"
+
+# export the files to the current directory
+.PHONY: eject-docker-cp
+eject-docker-cp: pull-docker
+	docker run  --name="sdk-shell" -d "$(DOCKER_IMAGE)" && docker cp sdk-shell:/home/lthn/ ../../
+
+.PHONY: eject-docker-cp
+clean-docker:
+	docker system prune
+
 
 .PHONY: install
 install:
