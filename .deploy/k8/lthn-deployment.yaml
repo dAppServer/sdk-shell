@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert --file ./.deploy/docker/docker-compose.yml --out ./.deploy/k8
+    kompose.version: 1.22.0 (955b78124)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: lthn
+  name: lthn
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: lthn
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert --file ./.deploy/docker/docker-compose.yml --out ./.deploy/k8
+        kompose.version: 1.22.0 (955b78124)
+      creationTimestamp: null
+      labels:
+        io.kompose.service: lthn
+    spec:
+      containers:
+        - image: lthn/sdk-shell
+          name: lthn
+          ports:
+            - containerPort: 48782
+            - containerPort: 48772
+            - containerPort: 14660
+          resources: {}
+          volumeMounts:
+            - mountPath: /home/lthn
+              name: data
+      restartPolicy: Always
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: data
+status: {}
