@@ -18,8 +18,16 @@ docker:
 deploy-docker: docker
 	docker push "$(DOCKER_IMAGE)"
 
+.PHONY: run-docker
 run-docker: docker
 	docker run -it "$(DOCKER_IMAGE)" bash
+
+
+.PHONY: install
+install:
+	ln -s "$(pwd)"/lthn.sh /usr/bin/lthn && chmod +x /usr/bin/lthn
+
+
 
 
 .PHONY: build-k8s

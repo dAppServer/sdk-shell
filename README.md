@@ -23,6 +23,10 @@ pushes the image to the registry you have logged into
 ```shell
 make deploy-docker
 ```
+It needs sudo for this: `ln -s "$(pwd)"/lthn.sh /usr/bin/lthn && chmod +x /usr/bin/lthn`
+```shell
+sudo make install
+```
 
 # Commands
 This is not meant to be used other than developers or power users.
