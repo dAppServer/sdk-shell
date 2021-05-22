@@ -161,36 +161,36 @@ makeWallet(){
     echo "Saved: $WALLET_FILE"
 }
 
-initCoin() {
-
-  # Create cli directory
-  if [ ! -d "$CLI_DATA"/"${1}" ]; then
-    echo "Creating $BASE_DIR/cli/${1}"
-    mkdir -p "$BASE_DIR"/cli/"${1}" || errorExit 2 "Cant make: $BASE_DIR/cli/${1}"
-    export CLI_DATA="$BASE_DIR/cli/${1}"
-  fi
-
-  # Create data directory
-  if [ ! -d "$BASE_DIR"/data/"${1}" ]; then
-    echo "Creating $BASE_DIR/data/${1}"
-    mkdir -p "$BASE_DIR/data/${1}"
-    export WALLET_DATA="$BASE_DIR/data/${1}"
-  fi
-
-  # Create log directory
-  if [ ! -d "$BASE_DIR"/cli/"${1}" ]; then
-    echo "Creating $BASE_DIR/logs/${1}"
-    mkdir -p "$BASE_DIR"/logs/"${1}"
-    export LOGS_DATA="$BASE_DIR/logs/${1}"
-  fi
-
-  # Create config dir
-  if [ ! -f "$CONFIG_DATA" ]; then
-    echo "Creating $CONFIG_DATA"
-    touch "$CONFIG_DATA"
-  fi
-
-}
+#initCoin() {
+#
+#  # Create cli directory
+#  if [ ! -d "$CLI_DATA"/"${1}" ]; then
+#    echo "Creating $BASE_DIR/cli/${1}"
+#    mkdir -p "$BASE_DIR"/cli/"${1}" || errorExit 2 "Cant make: $BASE_DIR/cli/${1}"
+#    export CLI_DATA="$BASE_DIR/cli/${1}"
+#  fi
+#
+#  # Create data directory
+#  if [ ! -d "$BASE_DIR"/data/"${1}" ]; then
+#    echo "Creating $BASE_DIR/data/${1}"
+#    mkdir -p "$BASE_DIR/data/${1}"
+#    export WALLET_DATA="$BASE_DIR/data/${1}"
+#  fi
+#
+#  # Create log directory
+#  if [ ! -d "$BASE_DIR"/cli/"${1}" ]; then
+#    echo "Creating $BASE_DIR/logs/${1}"
+#    mkdir -p "$BASE_DIR"/logs/"${1}"
+#    export LOGS_DATA="$BASE_DIR/logs/${1}"
+#  fi
+#
+#  # Create config dir
+#  if [ ! -f "$CONFIG_DATA" ]; then
+#    echo "Creating $CONFIG_DATA"
+#    touch "$CONFIG_DATA"
+#  fi
+#
+#}
 
 case $1 in
 sync|letheand)
@@ -255,6 +255,10 @@ dev-fund)
 
 sh | bash)
   /bin/bash
+  ;;
+
+bc-size)
+  du -h ./data/livenet/lmdb/data.mdb
   ;;
 
 *)
