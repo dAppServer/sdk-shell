@@ -3,9 +3,9 @@ include:
 
 Docker Hub:
   stage: deploy
-  image: docker
+  image: docker:20.10.6
   services:
-    - name: docker:dind
+    - name: docker:20.10.6-dind
       command: [ "--experimental" ]
 
   before_script:
@@ -20,12 +20,10 @@ Docker Hub:
 
 Docker Hub Dev:
   stage: deploy
-  image: docker
+  image: docker:20.10.6
   services:
-    - name: docker:dind
+    - name: docker:20.10.6-dind
       command: [ "--experimental" ]
-  variables:
-    DOCKER_IMAGE: "lthn/sdk-shell:develop"
   before_script:
     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
   script:
