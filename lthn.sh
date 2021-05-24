@@ -191,7 +191,6 @@ makeWallet(){
 #  fi
 #
 #}
-
 case $1 in
 sync|letheand)
   shift
@@ -237,6 +236,20 @@ vpn-rpc)
   done
   ;;
 
+test-seed-node)
+  shift
+  if [ -z "${*}" ]; then
+    NODE_IP="35.217.36.217:48772"
+  else
+    NODE_IP="$@"
+  fi
+  echo "Testing connection, Wait and send a 'status' cmd, check for 1 or 0 upstream: " $NODE_IP
+  runLiveNetDaemon --add-exclusive-node  "$NODE_IP"
+  ;;
+
+
+
+
 make-wallet)
   shift
   makeWallet
@@ -262,7 +275,7 @@ bc-size)
   ;;
 
 *)
-  echo "Bad command:$@ "
+  echo "Bad command: "
   echo "sync|daemon|import|export|vpn-rpc|wallet-rpc|make-wallet|wallet-cmd|wallet-cli|bash"
 
   exit 2
