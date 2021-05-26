@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 #echo "https://lethean.sh/${1}/${2}/${3}"
 export WALLET_PASSWORD="test"
