@@ -21,37 +21,21 @@ export PORT_RPC="48782"
 
 
 runLiveNetDaemon() {
-
-  if ! [ -t 0 ]; then
-    errorExit 3 "You must allocate TTY to run ${CHAIN_DAEMON}! Use -t option"
-  fi
   echo "Livenet Blockchain"
-  $CHAIN_DAEMON --offline --config-file "${CONFIG_PATH}"/livenet.conf "$@"
+  $CHAIN_DAEMON --config-file "${CONFIG_PATH}"/livenet.conf "$@"
 }
 
 exportChain() {
-
-  if ! [ -t 0 ]; then
-    errorExit 3 "You must allocate TTY to run ${CHAIN_EXPORT}! Use -t option"
-  fi
   echo "Exporting Blockchain"
   $CHAIN_EXPORT --data-dir=./data/livenet --output-file ./bc/data.lmdb
 }
 
 importChain() {
-
-  if ! [ -t 0 ]; then
-    errorExit 3 "You must allocate TTY to run ${CHAIN_IMPORT}! Use -t option"
-  fi
   echo "Blockchain Importing"
   $CHAIN_IMPORT --data-dir=./data/livenet --db-salvage --input-file ./bc/data.lmdb
 }
 
 runWalletRPC() {
-
-  if ! [ -t 0 ]; then
-    errorExit 3 "You must allocate TTY to run letheand! Use -t option"
-  fi
 
   if [ -z "$WALLET_RPC_URI" ]; then
     echo "Starting Wallet cli with $WALLET_FILE." >&2
