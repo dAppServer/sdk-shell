@@ -22,7 +22,7 @@ export PORT_RPC="48782"
 
 runLiveNetDaemon() {
   echo "Livenet Blockchain"
-  $CHAIN_DAEMON --config-file "${CONFIG_PATH}"/livenet.conf "$@"
+  $CHAIN_DAEMON --non-interactive --config-file "${CONFIG_PATH}"/livenet.conf "$@"
 }
 
 exportChain() {
