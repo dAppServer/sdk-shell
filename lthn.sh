@@ -25,6 +25,11 @@ runLiveNetDaemon() {
   $CHAIN_DAEMON --non-interactive --config-file "${CONFIG_PATH}"/livenet.conf "$@"
 }
 
+runTestNetDaemon() {
+  echo "Testnet Blockchain"
+  $CHAIN_DAEMON --non-interactive --testnet --config-file "${CONFIG_PATH}"/testnet.conf "$@"
+}
+
 exportChain() {
   echo "Exporting Blockchain"
   $CHAIN_EXPORT --data-dir=./data/livenet --output-file ./bc/data.lmdb
@@ -56,33 +61,6 @@ makeWallet(){
     echo "Saved: $WALLET_FILE"
 }
 
-#initCom() {
-#
-#  # Create cli directory
-#  if [ ! -d "$CLI_DATA"/"${1}" ]; then
-#    echo "Creating $BASE_DIR/cli/${1}"
-#    mkdir -p "$BASE_DIR"/cli/"${1}" || errorExit 2 "Cant make: $BASE_DIR/cli/${1}"
-#    export CLI_DATA="$BASE_DIR/cli/${1}"
-#  fi
-#
-#  # Create data directory
-#  if [ ! -d "$BASE_DIR"/data/"${1}" ]; then
-#    echo "Creating $BASE_DIR/data/${1}"
-#    mkdir -p "$BASE_DIR/data/${1}"
-#    export WALLET_DATA="$BASE_DIR/data/${1}"
-#  fi
-#
-#  # Create log directory
-#  if [ ! -d "$BASE_DIR"/cli/"${1}" ]; then
-#    echo "Creating $BASE_DIR/logs/${1}"
-#    mkdir -p "$BASE_DIR"/logs/"${1}"
-#    export LOGS_DATA="$BASE_DIR/logs/${1}"
-#  fi
-#
-#
-#
-#}
-
 case $1 in
 sync|letheand)
   shift
@@ -92,6 +70,11 @@ sync|letheand)
 daemon)
   shift
   runLiveNetDaemon --detach
+  ;;
+
+testnet)
+  shift
+  runTestNetDaemon "$@"
   ;;
 
 export)
