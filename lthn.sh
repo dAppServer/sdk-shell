@@ -14,6 +14,8 @@ export WALLET_VPN_RPC="${BASE_DIR}/cli/lethean-wallet-vpn-rpc"
 export CHAIN_IMPORT="${BASE_DIR}/cli/lethean-blockchain-import"
 export CHAIN_EXPORT="${BASE_DIR}/cli/lethean-blockchain-export"
 export CHAIN_DAEMON="${BASE_DIR}/cli/letheand"
+export CHAIN_DATA="${BASE_DIR}/data/chain"
+export BC_DATA="${BASE_DIR}/bc"
 
 export DAEMON_HOST="localhost"
 export PORT_P2P="48772"
@@ -32,12 +34,12 @@ runTestNetDaemon() {
 
 exportChain() {
   echo "Exporting Blockchain"
-  $CHAIN_EXPORT --data-dir=./data/livenet --output-file ./bc/data.lmdb
+  $CHAIN_EXPORT --data-dir="$CHAIN_DATA" --output-file "$BC_DATA"/data.lmdb
 }
 
 importChain() {
   echo "Blockchain Importing"
-  $CHAIN_IMPORT --data-dir=./data/livenet --db-salvage --input-file ./bc/data.lmdb
+  $CHAIN_IMPORT --data-dir=."$CHAIN_DATA" --input-file "$BC_DATA"/data.lmdb
 }
 
 runWalletRPC() {
@@ -152,7 +154,7 @@ bc-size)
 
 *)
   echo "Available Commands: "
-  echo "sync|daemon|import|export|vpn-rpc|wallet-rpc|make-wallet|wallet-cmd|wallet-cli|bash"
+  echo "sync|daemon|import|export|vpn-rpc|wallet-rpc|make-wallet|wallet-cmd|wallet-cli|testnet|bash"
   exit 2
   ;;
 
