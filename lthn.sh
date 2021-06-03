@@ -4,6 +4,7 @@
 export WALLET_PASSWORD="test"
 export WALLET_RPC_PASSWORD="test"
 
+export BASE_DIR="$(pwd)"
 export WALLET_DATA="${BASE_DIR}/wallet"
 export WALLET_FILE="${WALLET_DATA}/test-wallet"
 export CONFIG_PATH="${BASE_DIR}/config"
@@ -14,8 +15,9 @@ export WALLET_VPN_RPC="${BASE_DIR}/cli/lethean-wallet-vpn-rpc"
 export CHAIN_IMPORT="${BASE_DIR}/cli/lethean-blockchain-import"
 export CHAIN_EXPORT="${BASE_DIR}/cli/lethean-blockchain-export"
 export CHAIN_DAEMON="${BASE_DIR}/cli/letheand"
-export CHAIN_DATA="${BASE_DIR}/data/chain"
+export CHAIN_DATA="${BASE_DIR}/data"
 export BC_DATA="${BASE_DIR}/bc"
+export BC_MODE="livenet"
 
 export DAEMON_HOST="localhost"
 export PORT_P2P="48772"
@@ -34,12 +36,12 @@ runTestNetDaemon() {
 
 exportChain() {
   echo "Exporting Blockchain"
-  $CHAIN_EXPORT --data-dir="$CHAIN_DATA" --output-file "$BC_DATA"/data.lmdb
+  $CHAIN_EXPORT --data-dir="$CHAIN_DATA/$BC_MODE" --output-file "$BC_DATA/$BC_MODE"/data.lmdb
 }
 
 importChain() {
   echo "Blockchain Importing"
-  $CHAIN_IMPORT --data-dir=."$CHAIN_DATA" --input-file "$BC_DATA"/data.lmdb
+  $CHAIN_IMPORT --data-dir="$CHAIN_DATA/$BC_MODE" --input-file "$BC_DATA/$BC_MODE"/data.lmdb
 }
 
 runWalletRPC() {

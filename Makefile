@@ -37,7 +37,7 @@ pull-docker:
 eject-docker-cp: pull-docker
 	docker run  --name="sdk-shell" -d "$(DOCKER_IMAGE)" && docker cp sdk-shell:/home/lthn/ ../../
 
-.PHONY: eject-docker-cp
+.PHONY: clean-docker
 clean-docker:
 	docker system prune
 
