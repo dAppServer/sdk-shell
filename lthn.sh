@@ -138,9 +138,6 @@ make-wallet)
   makeWallet
   ;;
 
-
-
-
 dev-fund)
   shift
   showDevFund "$@"
